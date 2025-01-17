@@ -1,0 +1,41 @@
+name: Deploy Daily Chart Update
+on:
+  schedule:
+    - cron: '0 18 * * *'  # Fixed cron syntax
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repo content
+      uses: actions/checkout@v2
+      
+    - name: Setup Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        
+    - name: Run script
+      run: python rsi_volume_plot.py
+      
+    - name: Create or update index.html
+      run: |
+        echo "<html><body><img src='MZH_Chart.jpg' alt='Daily Chart'></body></html>" > index.html
+        
+    - name: Commit and push if changed
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add .
+        if [ -n "$(git status --porcelain)" ]; then
+          git commit -m "Daily chart update"
+          git push origin HEAD:${{ github.ref }}
+        fi
