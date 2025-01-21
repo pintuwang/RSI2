@@ -47,7 +47,7 @@ def weighted_rsi(data, periods):
 def plot_price_volume_rsi():
     try:
         # Hardcode the stock ticker and RSI periods
-        stock_ticker = "MZH.SI"
+        stock_ticker = "AWX.SI"
         periods = [0, 7, 14]
         
         # Retrieve data from yfinance
@@ -87,7 +87,7 @@ def plot_price_volume_rsi():
         #fig.suptitle(f'{stock_ticker} - Price, Volume, RSI Analysis', fontsize=16)
         
         # Add date and time to the title
-        fig.suptitle(f'Nanofilm(MZH.SI) - Price, Volume, RSI Analysis - Generated(SG Time): {formatted_time}', fontsize=16)
+        fig.suptitle(f'AEM(AWX.SI) - Price, Volume, RSI Analysis - Generated(SG Time): {formatted_time}', fontsize=16)
         
         
         # Plot Price
@@ -147,11 +147,11 @@ def plot_price_volume_rsi():
         # debug
         import os
         plt.show()
-        plt.savefig('MZH_Chart.jpg', format='jpg', dpi=300, bbox_inches='tight')
-        ##plt.savefig('MZH_Chart.png')
+        plt.savefig('AEM_Chart.jpg', format='jpg', dpi=300, bbox_inches='tight')
+        ##plt.savefig('AEM_Chart.png')
         plt.close()
-        print(os.path.exists('MZH_Chart.png'))  # Should print True if the file exists
-        print(os.path.abspath('MZH_Chart.png'))  # Shows the absolute path of where the file should be
+        print(os.path.exists('AEM_Chart.png'))  # Should print True if the file exists
+        print(os.path.abspath('AEM_Chart.png'))  # Shows the absolute path of where the file should be
     
     except Exception as e:
         import traceback
