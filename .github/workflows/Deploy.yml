@@ -26,7 +26,7 @@ jobs:
       
     - name: Create or update index.html
       run: |
-        echo "<html><body><img src='MZH_Chart.jpg' alt='Daily Chart'></body></html>" > index.html
+        echo "<html><body><img src='AEM_Chart.jpg' alt='Daily Chart'></body></html>" > index.html
         
     - name: Commit and push if changed
       env:
